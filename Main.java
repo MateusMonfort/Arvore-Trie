@@ -46,20 +46,15 @@ public class Main {
         System.out.println("Total de palavras inseridas: " + trie.contarPalavras());
         
         System.out.println("\n=== Teste de Busca ===");
-        System.out.println("Procurar 'car': " + trie.procurar("car"));
-        System.out.println("Procurar 'care': " + trie.procurar("care"));
-        System.out.println("Procurar 'ca': " + trie.procurar("ca"));
-        System.out.println("Procurar 'borg': " + trie.procurar("borg"));
+        trie.demonstrarBusca("car");
+        trie.demonstrarBusca("care");
+        trie.demonstrarBusca("ca");
+        trie.demonstrarBusca("borg");
         
         System.out.println("\n=== Teste de Autocompletar ===");
-        String[] sugestoesCar = trie.autocompletar("car");
-        System.out.println("Autocompletar 'car': " + java.util.Arrays.toString(sugestoesCar));
-        
-        String[] sugestoesCa = trie.autocompletar("ca");
-        System.out.println("Autocompletar 'ca': " + java.util.Arrays.toString(sugestoesCa));
-        
-        String[] sugestoesDo = trie.autocompletar("do");
-        System.out.println("Autocompletar 'do': " + java.util.Arrays.toString(sugestoesDo));
+        trie.demonstrarAutocompletar("car");
+        trie.demonstrarAutocompletar("ca");
+        trie.demonstrarAutocompletar("do");
         
         System.out.println("\n=== Teste de Remoção ===");
         System.out.println("Removendo 'car'...");
@@ -68,9 +63,9 @@ public class Main {
         trie.remover("hello");
         
         System.out.println("\nApós remoções:");
-        System.out.println("Procurar 'car': " + trie.procurar("car"));
-        System.out.println("Procurar 'card': " + trie.procurar("card"));
-        System.out.println("Autocompletar 'car': " + java.util.Arrays.toString(trie.autocompletar("car")));
+        trie.demonstrarBusca("car");
+        trie.demonstrarBusca("card");
+        trie.demonstrarAutocompletar("car");
         
         System.out.println("\n=== Todas as Palavras Restantes ===");
         trie.imprimirPalavras();
@@ -184,12 +179,7 @@ public class Main {
             return;
         }
         
-        boolean encontrada = trie.procurar(palavra);
-        if (encontrada) {
-            System.out.println("Palavra '" + palavra + "' encontrada na Trie!");
-        } else {
-            System.out.println("Palavra '" + palavra + "' NÃO encontrada na Trie!");
-        }
+        trie.demonstrarBusca(palavra);
     }
     
     private static void autocompletar() {
@@ -244,9 +234,9 @@ public class Main {
         System.out.println("Total atual na Trie: " + trie.contarPalavras() + " palavras");
         
         System.out.println("\nTeste de autocompletar:");
-        System.out.println("'prog' -> " + java.util.Arrays.toString(trie.autocompletar("prog")));
-        System.out.println("'java' -> " + java.util.Arrays.toString(trie.autocompletar("java")));
-        System.out.println("'cod' -> " + java.util.Arrays.toString(trie.autocompletar("cod")));
+        trie.demonstrarAutocompletar("prog");
+        trie.demonstrarAutocompletar("java");
+        trie.demonstrarAutocompletar("cod");
     }
     
     private static void limparTrie() {
@@ -271,17 +261,22 @@ public class Main {
         
         System.out.println("\n2. Inserindo 'CAT':");
         demo.adicionar("cat");
-        System.out.println("   Palavras: " + java.util.Arrays.toString(demo.autocompletar("")));
-        System.out.println("   Procurar 'cat': " + demo.procurar("cat"));
+        System.out.print("   ");
+        demo.imprimirPalavrasTrie();
+        System.out.print("   ");
+        demo.demonstrarBusca("cat");
         
         System.out.println("\n3. Inserindo 'CAR':");
         demo.adicionar("car");
-        System.out.println("   Palavras: " + java.util.Arrays.toString(demo.autocompletar("")));
-        System.out.println("   Autocompletar 'ca': " + java.util.Arrays.toString(demo.autocompletar("ca")));
+        System.out.print("   ");
+        demo.imprimirPalavrasTrie();
+        System.out.print("   ");
+        demo.demonstrarAutocompletar("ca");
         
         System.out.println("\n4. Inserindo 'CARD':");
         demo.adicionar("card");
-        System.out.println("   Autocompletar 'car': " + java.util.Arrays.toString(demo.autocompletar("car")));
+        System.out.print("   ");
+        demo.demonstrarAutocompletar("car");
         
         System.out.println("\n5. Aplicação prática - Sistema de busca:");
         demo.adicionar("java");
@@ -289,8 +284,10 @@ public class Main {
         demo.adicionar("python");
         demo.adicionar("programming");
         
-        System.out.println("   Buscar 'java': " + java.util.Arrays.toString(demo.autocompletar("java")));
-        System.out.println("   Buscar 'prog': " + java.util.Arrays.toString(demo.autocompletar("prog")));
+        System.out.print("   ");
+        demo.demonstrarAutocompletar("java");
+        System.out.print("   ");
+        demo.demonstrarAutocompletar("prog");
         
         System.out.println("\n6. Total final de palavras: " + demo.contarPalavras());
     }

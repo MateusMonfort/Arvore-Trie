@@ -61,7 +61,6 @@ public class ArvoreTrie {
             System.out.println("Palavra '" + palavra + "' não foi encontrada");
         }
     }
-    
     private boolean removerRecursivo(Node no, String palavra, int indice) {
         if (indice == palavra.length()) {
             if (!no.fimPalavra) {
@@ -85,7 +84,6 @@ public class ArvoreTrie {
             no.filhos[letraIndice] = null;
             return !no.fimPalavra && !no.temFilhos();
         }
-        
         return false;
     }
     
@@ -179,6 +177,35 @@ public class ArvoreTrie {
         String[] todasPalavras = autocompletar("");
         for (int i = 0; i < todasPalavras.length; i++) {
             System.out.println(todasPalavras[i]);
+        }
+    }
+    
+    // Métodos para demonstração em vídeo
+    public void demonstrarBusca(String palavra) {
+        boolean encontrou = procurar(palavra);
+        String status = encontrou ? "ENCONTRADA" : "NÃO ENCONTRADA";
+        System.out.println("Buscar '" + palavra.toUpperCase() + "': " + status);
+    }
+    
+    public void demonstrarAutocompletar(String prefixo) {
+        String[] sugestoes = autocompletar(prefixo);
+        String prefixoDisplay = prefixo.isEmpty() ? "(vazio)" : "'" + prefixo.toUpperCase() + "'";
+        System.out.println("Autocompletar " + prefixoDisplay + ": " + java.util.Arrays.toString(sugestoes));
+    }
+    
+    public void imprimirPalavrasTrie() {
+        String[] palavras = autocompletar("");
+        System.out.print("Palavras na Trie: ");
+        if (palavras.length == 0) {
+            System.out.println("(nenhuma palavra)");
+        } else {
+            for (int i = 0; i < palavras.length; i++) {
+                System.out.print(palavras[i].toUpperCase());
+                if (i < palavras.length - 1) {
+                    System.out.print(", ");
+                }
+            }
+            System.out.println();
         }
     }
 }
