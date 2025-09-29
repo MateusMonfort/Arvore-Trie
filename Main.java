@@ -72,8 +72,6 @@ public class Main {
         
         System.out.println("\nTotal final de palavras: " + trie.contarPalavras());
         
-        System.out.println("\n=== Demonstração Adicional ===");
-        demonstracaoVideo();
     }
     
     private static void modoManual() {
@@ -251,44 +249,4 @@ public class Main {
         }
     }
     
-    public static void demonstracaoVideo() {
-        ArvoreTrie demo = new ArvoreTrie();
-        
-        System.out.println("\nDemonstração Passo-a-Passo:");
-        
-        System.out.println("\n1. Trie vazia:");
-        System.out.println("   Total de palavras: " + demo.contarPalavras());
-        
-        System.out.println("\n2. Inserindo 'CAT':");
-        demo.adicionar("cat");
-        System.out.print("   ");
-        demo.imprimirPalavrasTrie();
-        System.out.print("   ");
-        demo.demonstrarBusca("cat");
-        
-        System.out.println("\n3. Inserindo 'CAR':");
-        demo.adicionar("car");
-        System.out.print("   ");
-        demo.imprimirPalavrasTrie();
-        System.out.print("   ");
-        demo.demonstrarAutocompletar("ca");
-        
-        System.out.println("\n4. Inserindo 'CARD':");
-        demo.adicionar("card");
-        System.out.print("   ");
-        demo.demonstrarAutocompletar("car");
-        
-        System.out.println("\n5. Aplicação prática - Sistema de busca:");
-        demo.adicionar("java");
-        demo.adicionar("javascript");
-        demo.adicionar("python");
-        demo.adicionar("programming");
-        
-        System.out.print("   ");
-        demo.demonstrarAutocompletar("java");
-        System.out.print("   ");
-        demo.demonstrarAutocompletar("prog");
-        
-        System.out.println("\n6. Total final de palavras: " + demo.contarPalavras());
-    }
 }
